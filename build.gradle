@@ -1,0 +1,40 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.gretty' version '3.0.3'
+	id 'eclipse'
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	jcenter()
+}
+
+dependencies {
+	runtimeOnly 'org.slf4j:slf4j-simple:1.7.30'
+	implementation "org.apache.tapestry:tapestry-core:$tapestryVersion"
+	if (project.hasProperty("withWebresources")) {
+		runtimeOnly "org.apache.tapestry:tapestry-webresources:$tapestryVersion"
+	} 
+}
+
+import org.akhikhl.gretty.AppStartTask
+
+task('runProd', type: AppStartTask, dependsOn: 'prepareInplaceWebApp') {
+	systemProperty 'tapestry.production-mode', 'true'
+}
+
+task('runProdNoMini', type: AppStartTask, dependsOn: 'prepareInplaceWebApp') {
+	systemProperty 'tapestry.production-mode', 'true'
+	systemProperty 'tapestry.enable-minification', 'false'
+}
+
+task('runDev', type: AppStartTask, dependsOn: 'prepareInplaceWebApp') {
+	systemProperty 'tapestry.production-mode', 'false'
+}
+
+task('runDevWithMini', type: AppStartTask, dependsOn: 'prepareInplaceWebApp') {
+	systemProperty 'tapestry.production-mode', 'false'
+	systemProperty 'tapestry.enable-minification', 'true'
+}

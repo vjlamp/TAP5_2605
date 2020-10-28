@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
+	<head>
+		<meta charset="utf-8" />
+		<title>TAP5-2605 demo</title>
+	</head>
+	<body>
+		<h1>TAP5-2605 demo</h1>
+		<dl>
+			<dt>tapestry.version</dt>
+			<dd>${symbol:tapestry.version}</dd>
+		</dl>
+		<dl>
+			<dt>tapestry.production-mode</dt>
+			<dd>${symbol:tapestry.production-mode}</dd>
+		</dl>
+		<dl>
+			<dt>tapestry.enable-minification</dt>
+			<dd>${symbol:tapestry.enable-minification}</dd>
+		</dl>
+		<dl>
+			<dt>tapestry-webresources loaded</dt>
+			<dd>${webResourcesLoaded}</dd>
+		</dl>
+	</body>
+</html>
